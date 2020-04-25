@@ -31,10 +31,10 @@ total_ajuan_03 <- ajuan_03 %>%
                       summarize(jumlah = sum(total, na.rm=TRUE))
 format(total_ajuan_03$jumlah, big.mark=",",scientific=FALSE)                      
                                             
-total_ajuan_03
+#total_ajuan_03
                     
 ```
-```{r, echo=FALSE, layout="l-body-outset", include=FALSE}
+```{r, echo=FALSE, layout="l-body-outset", include=TRUE}
 kable(total_ajuan_03, digits = 3, format.args = list(big.mark = ",", 
   scientific = FALSE)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, position = "left", font_size = 10, fixed_thead = T) %>% 
