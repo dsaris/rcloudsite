@@ -5,7 +5,12 @@ title: Vitae
 ---
 Ini adalah vitae  
 
-_ini saya edit dari forestry_
+_ini saya edit dari forestry_  
+
+ini edit lagi dari rcloud  
+1. edit 1
+2. edit 2
+3. edit 3
 
 **menggunakan font tebal**
 
