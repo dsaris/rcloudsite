@@ -1,13 +1,14 @@
 ---
-date: 2020-04-25T21:48:51-07:00
+date: 2020-04-26T04:48:51.000+00:00
 title: Vitae
 
 ---
-Ini adalah vitae  
+Ini adalah vitae
 
-_ini saya edit dari forestry_  
+_ini saya edit dari forestry_
 
 ini edit lagi dari rcloud  
+
 1. edit 1
 2. edit 2
 3. edit 3
