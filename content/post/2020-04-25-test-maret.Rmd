@@ -13,7 +13,7 @@ tags:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Report Maret 2020  
-Halaman ini berisi laporan ajuan dan realisasi sparepart periode maret 2020  
+Halaman ini berisi laporan ajuan dan realisasi sparepart periode maret 2020  diupdate pada 6 agustus 2020
 
 ### Tabel Ajuan dari User  
 
