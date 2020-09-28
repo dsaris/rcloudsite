@@ -1,0 +1,118 @@
+---
+title: ajuan September 2020
+author: ''
+date: '2020-09-28'
+slug: ajuan-september-2020
+categories:
+  - Laporan
+tags:
+  - R Markdown
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(kableExtra)
+library(knitr)
+library(tidyverse)
+library(stringr)
+library(DT)
+library(lubridate)
+library(scales)
+
+kumulatif_sep_20 <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQUYsfUgVYlVMpSWUj0U20y7GjAFgdPdNQhMxry-_31ekA_9i1KIlNHoiDgI0H0N1ady3g2SGQUICBU/pub?gid=1958899369&single=true&output=csv"
+)
+kumulatif_sep_20$average.target <- as.numeric(gsub("[Rp.]","", kumulatif_sep_20$average.target))
+kumulatif_sep_20$kumulatif.target <- as.numeric(gsub("[Rp.]","", kumulatif_sep_20$kumulatif.target))
+kumulatif_sep_20$realisasi <- as.numeric(gsub("[Rp.]","", kumulatif_sep_20$realisasi))
+kumulatif_sep_20$kumulatif.realisasi <- as.numeric(gsub("[Rp.]","", kumulatif_sep_20$kumulatif.realisasi))
+
+#mengubah format tanggal
+kumulatif_sep_20 <- kumulatif_sep_20 %>% mutate(tanggal2 =as.Date(tanggal, format= '%d/%m/%y'))
+
+str(kumulatif_sep_20)
+
+#Mengubah nilai NA jadi ""
+kumulatif_sep_20 %>% replace(., is.na(.), "")
+                
+
+```
+
+## Target dan Realisasi Kumulatif September 2020
+
+
+
+```{r graf_line, echo=FALSE}
+ggplot(data=kumulatif_sep_20,
+            aes(x=tanggal2)) +
+  geom_line(aes(y = kumulatif.target), color = "darkred", size = 1) +
+  geom_line(aes(y = kumulatif.realisasi), color = "steelblue", size = 1) +
+  geom_point(aes(y = kumulatif.realisasi), color = "steelblue", size=2, alpha=0.8) +
+  geom_point(aes(y = kumulatif.target), color = "red", size=2, alpha=0.8) +
+  xlab("tanggal") +
+  ylab("Rupiah") +
+  ggtitle("Realisasi Sparepart Kumulatif September 2020") +
+  scale_y_continuous(name = "Milyar Rupiah", limits = c(0, 6000000000), labels = scales::comma)
+  
+  #scale_x_discrete(name = "Tanggal", limits = c(1:31))
+#theme(legend.position = c(0.25, 0.9),
+#legend.direction = "horizontal")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+  
+    
+    
+ 
+## Top 10 Material Used
+
+```{r top_10_spare, echo=FALSE}
+library(dplyr)
+rl_sep_20 <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQUYsfUgVYlVMpSWUj0U20y7GjAFgdPdNQhMxry-_31ekA_9i1KIlNHoiDgI0H0N1ady3g2SGQUICBU/pub?gid=0&single=true&output=csv")
+
+rl_sep_20$Quantity <- as.numeric(rl_sep_20$Quantity)
+rl_sep_20$Amount.in.LC <- as.numeric(rl_sep_20$Amount.in.LC)
+
+
+top_spare <- rl_sep_20 %>%
+  group_by(Material,Description, Base.Unit) %>%
+  summarize(
+    Qty = sum(Quantity, na.rm = TRUE),
+    Amount = sum(Amount.in.LC, na.rm = TRUE)
+  ) %>%
+  arrange(desc(Amount)) %>%
+  top_n(10)
+datatable(top_spare) %>% formatCurrency('Amount', currency = "Rp", interval = 3, mark = ",", digits = 2, dec.mark = getOption("OutDec"), before = TRUE)
+```
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+## Top 10 Unit Kerja
+
+```{r top_10_uk, echo=FALSE}
+
+
+top_uk <- rl_sep_20 %>%
+  group_by(NAMA.SEKSI.PG) %>%
+  summarize(
+    Amount = sum(Amount.in.LC, na.rm = TRUE)
+  ) %>%
+  arrange(desc(Amount)) 
+ 
+datatable(top_uk) %>% formatCurrency('Amount', currency = "Rp", interval = 3, mark = ",", digits = 2, dec.mark = getOption("OutDec"), before = TRUE)
+```
+
+
+
+
+
