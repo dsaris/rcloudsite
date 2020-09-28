@@ -1,5 +1,5 @@
 ---
-title: ajuan September 2020
+title: Ajuan September 2020
 author: ''
 date: '2020-09-28'
 slug: ajuan-september-2020
@@ -42,6 +42,9 @@ kumulatif_sep_20 %>% replace(., is.na(.), "")
 ```
 
 ## Target dan Realisasi Kumulatif September 2020
+ 
+
+ 
 
 
 
@@ -64,7 +67,12 @@ ggplot(data=kumulatif_sep_20,
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
   
-    
+ 
+ 
+  
+  
+  
+     
     
  
 ## Top 10 Material Used
@@ -94,7 +102,11 @@ datatable(top_spare) %>% formatCurrency('Amount', currency = "Rp", interval = 3,
   
   
     
-  
+    
+    
+     
+     
+     
   
     
 ## Top 10 Unit Kerja
